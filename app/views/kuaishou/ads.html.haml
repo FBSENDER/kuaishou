@@ -1,0 +1,35 @@
+.container
+  .row
+    .col-md-12
+      %a.btn.btn-primary{href: "/", style: "margin-top:5px"} 返回首页
+    .col-md-12
+      %h2.page-header 广告列表
+    .col-md-12
+      %table.table.table-striped
+        %tr
+          %th 作品ID
+          %th 广告?
+          %th 统计量
+          %th 已下线？
+          %th 发布时间
+          %th 数据更新
+        - @photos.each do |photo|
+          %tr
+            %td
+              %a{href: "https://www.kuaishou.com/photo/#{photo.user_source_id}/#{photo.photo_id}/", target: "_blank"} #{photo.photo_id}
+            %td 
+              - if photo.is_ad == 0
+                %a.btn.btn-default{href: "/photo/#{photo.photo_id}/set_ad/?is_ad=1"} 设为广告
+              -else 
+                %a.btn.btn-success{href: "/photo/#{photo.photo_id}/set_ad/?is_ad=0"} 取消广告
+            %td 
+              单小时：#{photo.first_hour_views == 0 ? '尚未计算' : photo.first_hour_views == -1 ? 'miss it' : photo.first_hour_views}
+              %br
+              浏览量：#{photo.views}
+              %br
+              喜欢量：#{photo.likes}
+              %br
+              评论量：#{photo.comments}
+            %td #{photo.is_online == 1 ? '否': (photo.offline_at + 8.hours).strftime("%F %H:%M")}
+            %td #{(photo.published_at + 8.hours).strftime("%F %H:%M")}
+            %td #{(photo.updated_at + 8.hours).strftime("%F %H:%M")}
