@@ -1,34 +1,40 @@
 .container
   .row
-    %h2.page-header 用户列表
+    .col-md-12
+      %h2.page-header 
+        用户列表  
+        %a.btn.btn-success.pull-right{href: "/ads"} 广告列表GO
+    .col-md-12
+      %form.form-horizontal{action: "/user_add/", style: "padding-left:15px"}
+        .form-group
+          %input#user_id.form-control{type: 'text', name: 'id',style: "width:250px", placeholder: "请输入快手用户ID"}
+        .form-group
+          %button.btn.btn-default{type: "submit"} 添加用户
     .col-md-12
       %table.table.table-striped
         %tr
           %th ID
           %th 用户名
-          %th 立即更新
+          %th 更新
+          %th 作品
           %th 性别
           %th 粉丝数
           %th 更新时间
-          %th 近期作品
         - @users.each do |user|
           %tr
             %td
               %a{href: "https://www.kuaishou.com/live/user/#{user.source_id}/", target: "_blank"} #{user.source_id}
             %td #{user.user_name}
             %td
-              %a.btn.btn-primary{href: "/user/#{user.source_id}/refresh"} 立即刷新
+              %a.btn.btn-primary{href: "/user/#{user.source_id}/refresh"} 刷新
+            %td
+              %a.btn.btn-success{href: "/user/#{user.source_id}/"} 作品
             %td #{user.user_sex}
             %td #{user.fans_count}
             %td #{(user.updated_at + 8.hours).strftime("%F %H:%M")}
-            %td
-              %a{href: "/user/#{user.source_id}/"} 作品
-    .col-md-12
-      %form.form-inline{action: "/user_add/"}
-        %input#user_id{type: 'text', name: 'id'}
-        %button.btn.btn-default{type: "submit"} 添加用户
 
   .row
     .col-md-12
       %h2.page-header 广告列表
       %a.btn.btn-default{href: "/ads"} GO
+      .page-header
