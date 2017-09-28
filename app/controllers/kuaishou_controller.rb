@@ -2,7 +2,7 @@ require 'kuaishou'
 require 'date'
 class KuaishouController < ApplicationController
   def user_list
-    @users = User.all
+    @users = User.order("id desc")
   end
 
   def user
