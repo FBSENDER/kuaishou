@@ -20,12 +20,28 @@ class KuaishouController < ApplicationController
   end
 
   def user_add
-    id = params[:id].to_i
+    idd = params[:id]
+    id = idd.to_i
+    if(idd.match(/https?:\/\//))
+      res = HTTParty.get(idd)
+      idd = res.request.last_uri.to_s
+    end
+    ids = idd.match(/\/(\d+)\/(\d+)/)
+    ad_id = 0
+    unless ids.nil?
+      id = ids[1].to_i
+      ad_id = ids[2].to_i
+    end
+
     not_found if id.zero?
     t = TargetUser.where(user_id: id).take
     if t.nil?
       t = TargetUser.new
       t.user_id = id
+      t.ad_source_id = ad_id
+      t.save
+    else
+      t.ad_source_id = ad_id
       t.save
     end
     render plain: "添加监控用户成功，数据将在1分钟内更新"
