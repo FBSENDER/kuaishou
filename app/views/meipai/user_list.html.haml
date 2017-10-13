@@ -1,0 +1,40 @@
+.container
+  .row
+    .col-md-12
+      %h2.page-header 
+        用户列表  
+        %a.btn.btn-success.pull-right{href: "/meipai/ads"} 广告列表GO
+    .col-md-12
+      %form.form-horizontal{action: "/meipai/user_add/", style: "padding-left:15px"}
+        .form-group
+          %input#user_id.form-control{type: 'text', name: 'id',style: "width:250px", placeholder: "请输入美拍用户ID 或 作品链接"}
+        .form-group
+          %button.btn.btn-default{type: "submit"} 添加用户
+    .col-md-12
+      %table.table.table-striped
+        %tr
+          %th ID
+          %th 用户名
+          %th 更新
+          %th 作品
+          %th 性别
+          %th 粉丝数
+          %th 更新时间
+        - @users.each do |user|
+          %tr
+            %td
+              %a{href: "http://www.meipai.com/user/#{user.source_id}/", target: "_blank"} #{user.source_id}
+            %td #{user.user_name}
+            %td
+              %a.btn.btn-primary{href: "/meipai/user/#{user.source_id}/refresh"} 刷新
+            %td
+              %a.btn.btn-success{href: "/meipai/user/#{user.source_id}/"} 作品
+            %td #{user.user_sex}
+            %td #{user.fans_count}
+            %td #{(user.updated_at + 8.hours).strftime("%F %H:%M")}
+
+  .row
+    .col-md-12
+      %h2.page-header 广告列表
+      %a.btn.btn-default{href: "/meipai/ads"} GO
+      .page-header
