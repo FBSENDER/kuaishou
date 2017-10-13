@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   get "meipai/user_add", to: "meipai#user_add"
   get "meipai/photo/:id/set_ad", to: "meipai#set_ad"
   get "meipai/ads", to: "meipai#ads"
+  get "meipai", to: "meipai#user_list"
 end
