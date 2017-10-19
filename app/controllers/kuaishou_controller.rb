@@ -52,6 +52,11 @@ class KuaishouController < ApplicationController
     @users = User.all
   end
 
+  def ads_online
+    @photos = Photo.where(is_ad: 1, is_online: 1).order("published_at desc").to_a
+    @users = User.all
+  end
+
   def report
   end
 

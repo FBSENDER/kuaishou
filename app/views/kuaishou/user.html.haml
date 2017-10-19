@@ -6,6 +6,8 @@
       %h2.page-header 
         #{@user.user_name}
         %a{href: "https://www.kuaishou.com/live/user/#{@user.source_id}/", target: "_blank"} #{@user.source_id}
+        %a.btn.btn-success.pull-right{href: "/ads"} 全部广告
+        %a.btn.btn-warning.pull-right{href: "/ads_online", style: "margin-right:10px"} 在线广告
     .col-md-12
       %table.table.table-striped
         %tr

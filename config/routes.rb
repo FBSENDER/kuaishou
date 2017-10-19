@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "user_add", to: "kuaishou#user_add"
   get "/photo/:id/set_ad", to: "kuaishou#set_ad"
   get "ads", to: "kuaishou#ads"
+  get "ads_online", to: "kuaishou#ads_online"
 
   get "meipai/user/:id", to: "meipai#user"
   get "meipai/user/:id/refresh", to: "meipai#user_refresh"
