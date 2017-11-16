@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "user_add/:id", to: "kuaishou#user_add"
   get "user_add", to: "kuaishou#user_add"
   get "/photo/:id/set_ad", to: "kuaishou#set_ad"
+  get "/photo/:id/reset_online", to: "kuaishou#reset_online"
   get "ads", to: "kuaishou#ads"
   get "ads_online", to: "kuaishou#ads_online"
 

@@ -68,4 +68,13 @@ class KuaishouController < ApplicationController
     @photo.save
     render plain: "设置成功"
   end
+
+  def reset_online
+    @photo = Photo.where(photo_id: params[:id].to_i).take
+    not_found if @photo.nil?
+    @photo.is_online = 1
+    @photo.offline_at = nil
+    @photo.save
+    render plain: "重置作品下线时间成功"
+  end
 end
