@@ -29,6 +29,10 @@
             %td 
               单小时：#{photo.first_hour_views == 0 ? '尚未计算' : photo.first_hour_views == -1 ? 'miss it' : photo.first_hour_views}
               %br
+              第一天：#{photo.first_day_views == 0 ? '尚未计算' : photo.first_day_views == -1 ? 'miss it' : photo.first_day_views}
+              %br
+              第二天：#{photo.second_day_views == 0 ? '尚未计算' : photo.second_day_views == -1 ? 'miss it' : photo.second_day_views}
+              %br
               浏览量：#{photo.views}
               %br
               喜欢量：#{photo.likes}
